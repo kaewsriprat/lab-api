@@ -5,6 +5,10 @@ $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', $request);
 if (isset($request[3])) {
     $request = $request[3];
+    $id = explode('/', $_SERVER['REQUEST_URI']);
+    if(isset($id[4])){
+        $id = $id[4];
+    }
 }
 switch ($method) {
     case 'GET':
@@ -13,7 +17,7 @@ switch ($method) {
                 echo json_encode(getUsers());
                 break;
             case 'getUserById':
-                echo json_encode(getUserById($_GET['id']));
+                echo json_encode(getUserById($id));
                 break;
             default:
                 break;
